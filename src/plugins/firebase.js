@@ -18,7 +18,8 @@ const auth = firebase.auth()
 
 const profileCollection = db.collection('profile')
 const tasksCollection = db.collection('tasks')
+const googleProvider = new firebase.auth.GoogleAuthProvider()
 
 export {
-    db, auth, profileCollection, tasksCollection
+    db, auth, profileCollection, tasksCollection, googleProvider
 }

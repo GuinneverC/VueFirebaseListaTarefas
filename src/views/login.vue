@@ -1,22 +1,32 @@
 <template>
   <v-container fill-height fluid text-center>
-      <v-container>
+      <v-container >
           <v-row>
-              <v-col class="primary--text text-center mx-auto pb-4" cols="1" sm="4" offset="4">
-                  <h1>Login</h1>
+              <v-col  class=" text-center mx-auto pb-4" cols="1" sm="4" offset="4">
+                  <h1>LOGIN</h1>
               </v-col>
           </v-row>
           <v-row class="elevation-3 mx-auto">
               <v-col cols="auto">
-                  <v-img max-height="150" max-width="110" src="@/assets/images/firebase_logo.png"></v-img>
+                  <v-img max-height="150" max-width="110" src="@/assets/images/img.png"></v-img>
               </v-col>
               <v-col>
                   <v-form>
                     <v-text-field label="Email" v-model="user.email"></v-text-field>
                     <v-text-field label="Senha" v-model="user.password" :type="show ? 'text' : 'password'" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" @click:append="show = !show"></v-text-field>
-                    <v-btn color="primary" @click="login">Login</v-btn>
-                    <v-btn class="ml-2" color="warning" @click="reset">Cancelar</v-btn>
-
+                    <v-row>
+                        <v-col>
+                            <v-btn color="#00478f" dark @click="login">Login</v-btn>
+                            <v-btn class="ml-2" color="#CBEBF5" @click="reset">Cancelar</v-btn>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col>
+                            <h3>Acesse também usando:</h3>
+                    <v-icon @click="loginGoogle" color="#1A83CC">mdi-google</v-icon>
+                        </v-col>
+                    </v-row>
+                    
                   </v-form>
               </v-col>
           </v-row>
@@ -31,7 +41,7 @@
     <v-card-text>A conta não foi localizada. Deseja criar um nova conta com os dados informados?</v-card-text>
     <v-card-actions>
         <v-spacer>
-            <v-btn color="green darken-2" text @click="criarNovaConta">Sim</v-btn>
+            <v-btn color="blue darken-2" text @click="criarNovaConta">Sim</v-btn>
             <v-btn color="red darken-2" text @click="NovaConta = false">Não</v-btn>
 
         </v-spacer>
@@ -55,6 +65,10 @@ data () {
 methods: {
     reset() {
         this.user = {};
+    },
+    async loginGoogle() {
+        await fb.auth.signInWithPopup(fb.googleProvider)
+        this.$router.push({ name: "Home" });
     },
     async login() {
         try {

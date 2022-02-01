@@ -2,10 +2,10 @@
   <v-container class="pa-8" fluid>
     <h1 class="h1">Meu Perfil</h1>
     <v-form>
-      <v-container>
+      <v-container color="#CBEBF5">
         <v-text-field label="Nome" v-model="nome"></v-text-field>
         <v-text-field label="Sobrenome" v-model="sobrenome"></v-text-field>
-        <v-btn @click="salvarPerfil">Salvar</v-btn>
+        <v-btn color="#00478F" dark @click="salvarPerfil">Salvar</v-btn>
       </v-container>
     </v-form>
   </v-container>
